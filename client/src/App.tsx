@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "./App.css";
+import MapContainer from "./components/MapContainer";
 
 const SERVER_URL = "http://localhost:5000/";
 
@@ -15,9 +16,10 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Fragment>
-      {serverMsg}
-    </Fragment>
+    <MapContainer></MapContainer>
+    // <Fragment>
+    //   {serverMsg}
+    // </Fragment>
   );
 };
 
