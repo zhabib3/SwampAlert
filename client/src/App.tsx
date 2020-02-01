@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Grid, GridColumn } from "semantic-ui-react";
+import InputForm from "./components/InputForm"
 import "./App.css";
 import SidePane from "./components/SidePane";
 import MapContainer from "./components/MapContainer";
@@ -17,12 +18,12 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <Grid columns={2} style={{minHeight: "100vh", backgroundColor: "#fff"}}>
-        <GridColumn width={4}>
+      <Grid centered columns={2} style={{minHeight: "100vh", backgroundColor: "#fff"}}>
+        <GridColumn style={{padding: 0}} width={4}>
           <SidePane />
         </GridColumn>
 
-        <GridColumn width={12}>
+        <GridColumn style={{padding: 0}} width={12}>
           <MapContainer />
         </GridColumn>
       </Grid>
