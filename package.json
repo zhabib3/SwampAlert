@@ -1,0 +1,31 @@
+{
+  "name": "squadup",
+  "version": "1.0.0",
+  "description": "Codebase for Senior project 2020: SquadUp",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgarzonmoreno/Senior-Project-Spring-2020.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dgarzonmoreno/Senior-Project-Spring-2020/issues"
+  },
+  "homepage": "https://github.com/dgarzonmoreno/Senior-Project-Spring-2020#readme",
+  "dependencies": {
+    "concurrently": "^5.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
