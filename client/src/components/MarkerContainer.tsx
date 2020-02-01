@@ -19,7 +19,7 @@ const MarkerContainer = () => {
     ];
     const markers = data.map(values => {
         return(
-            <MapMarker coords={values}/>
+            <MapMarker markers={data} coords={values}/>
         );
     });
     return markers;
