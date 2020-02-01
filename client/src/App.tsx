@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import { Grid, GridColumn } from "semantic-ui-react";
 import "./App.css";
 import SidePane from "./components/SidePane";
+import MapContainer from "./components/MapContainer";
 
 const SERVER_URL = "http://localhost:5000/";
 
@@ -21,7 +22,9 @@ const App: React.FC = () => {
           <SidePane />
         </GridColumn>
 
-        <GridColumn width={12}>Map</GridColumn>
+        <GridColumn width={12}>
+          <MapContainer />
+        </GridColumn>
       </Grid>
     </div>
   );
