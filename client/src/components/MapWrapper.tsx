@@ -5,7 +5,7 @@ import { time } from 'console';
 
 
 const MapWrapper = () => {
-
+    
     let lat : Number = 29.6481044;
     let long : Number = -82.34400542;
     const { latitude, longitude, timestamp, accuracy } = usePosition(true);
@@ -14,7 +14,6 @@ const MapWrapper = () => {
         long = longitude;
     }
     let coords = {latitude: lat, longitude: long}
-    // time.wait(3);
     return (
         <MapContainer coords={coords}></MapContainer>
     )
