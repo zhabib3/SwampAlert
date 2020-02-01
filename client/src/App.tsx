@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import InputForm from "./components/InputForm"
 import "./App.css";
 
 const SERVER_URL = "http://localhost:5000/";
@@ -16,7 +17,7 @@ const App: React.FC = () => {
 
   return (
     <Fragment>
-      {serverMsg}
+      <InputForm />
     </Fragment>
   );
 };
