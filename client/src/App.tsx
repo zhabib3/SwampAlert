@@ -4,6 +4,7 @@ import InputForm from "./components/InputForm"
 import "./App.css";
 import SidePane from "./components/SidePane";
 import MapContainer from "./components/MapContainer";
+import MapWrapper from './components/MapWrapper';
 
 const SERVER_URL = "http://localhost:5000/";
 
@@ -24,10 +25,13 @@ const App: React.FC = () => {
         </GridColumn>
 
         <GridColumn style={{padding: 0}} width={12}>
-          <MapContainer />
+        <MapWrapper></MapWrapper>
         </GridColumn>
       </Grid>
     </div>
+    // <Fragment>
+    //   {serverMsg}
+    // </Fragment>
   );
 };
 

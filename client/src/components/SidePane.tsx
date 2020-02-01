@@ -5,7 +5,9 @@ import {
   Label,
   Container,
   Button,
-  Icon
+  Icon,
+  Segment,
+  Header
 } from "semantic-ui-react";
 import IIncident from "../interfaces/IIncident";
 import IncidentCard from "./IncidentCard";
@@ -91,14 +93,21 @@ const SidePane: React.FC = () => {
 
   return (
     <div style={{height: "100vh", display: "flex", flex: 1, flexDirection: "column"}}>
-      <ItemGroup divided style={{ padding: 20, flex: 8, maxHeight: "90vh", overflowY: "scroll" }}>
+      <Container style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 20, margin: 0, flex: 10, overflowY: "scroll" }}>
+      <Header style={{margin: 20}} as='h2'>
+    <Icon name='exclamation triangle' />
+    <Header.Content>Incidents</Header.Content>
+  </Header>
+      <ItemGroup divided >
         {incidents.map(incident => (
           <IncidentCard incident={incident} />
         ))}
       </ItemGroup>
-      <Container style={{flex: 1}} textAlign="center">
-        <InputForm />
       </Container>
+     
+      <Segment style={{flex: 1, margin: 0, borderRadius: 0}} inverted textAlign="center">
+        <InputForm />
+      </Segment>
     </div>
   );
 };
