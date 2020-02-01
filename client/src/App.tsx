@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "./App.css";
-import MapContainer from "./components/MapContainer";
+import MapWrapper from './components/MapWrapper';
 
 const SERVER_URL = "http://localhost:5000/";
 
@@ -16,7 +16,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <MapContainer></MapContainer>
+    <MapWrapper></MapWrapper>
     // <Fragment>
     //   {serverMsg}
     // </Fragment>
