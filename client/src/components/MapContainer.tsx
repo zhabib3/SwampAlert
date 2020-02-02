@@ -35,6 +35,7 @@ const MapContainer = (props: any) => {
         bootstrapURLKeys={{ key: 'AIzaSyCnEVlvmx-XTp7YlfeUr48kFqbTxoZfzD4' }}
         defaultCenter={center}
         defaultZoom={zoom}
+        // options={}
       >
         {Markers}
 
