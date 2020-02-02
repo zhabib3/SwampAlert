@@ -1,13 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Grid, GridColumn } from "semantic-ui-react";
-import InputForm from "./components/InputForm"
 import "./App.css";
 import SidePane from "./components/SidePane";
-import MapContainer from "./components/MapContainer";
 import MapWrapper from './components/MapWrapper';
 import IIncident from "./interfaces/IIncident";
 
-const SERVER_URL = "http://localhost:5000/";
+const SERVER_URL = "http://localhost:5000/incident/";
 
 const DUMMY_DATA: IIncident[] = [
   {
@@ -84,20 +82,20 @@ const DUMMY_DATA: IIncident[] = [
   }
 ];
 const App: React.FC = () => {
-  const [serverMsg, setServerMsg] = useState("Loading...");
   const [selectedIncident, setSelectedIncident] = useState(DUMMY_DATA[0].id);
+  const [incidents, setIncidents] = useState<any[]>([]);
 
   useEffect(() => {
     fetch(SERVER_URL)
-      .then(response => response.text())
-      .then(data => setServerMsg(data));
+      .then(response => response.json())
+      .then(data => setIncidents(data));
   }, []);
 
   return (
     <div>
       <Grid centered columns={2} style={{minHeight: "100vh", backgroundColor: "#fff"}}>
         <GridColumn style={{padding: 0}} width={4}>
-          <SidePane incidentsData={DUMMY_DATA} />
+          <SidePane incidentsData={incidents} />
         </GridColumn>
 
         <GridColumn style={{padding: 0}} width={12}>

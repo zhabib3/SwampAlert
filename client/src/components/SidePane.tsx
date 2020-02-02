@@ -14,11 +14,10 @@ import IncidentCard from "./IncidentCard";
 import InputForm from "./InputForm";
 
 interface IProps{
-  incidentsData: IIncident[];
+  incidentsData: any[];
 }
 
 const SidePane: React.FC<IProps> = ({incidentsData}) => {
-  const [incidents, setIncidents] = useState<IIncident[]>(incidentsData);
 
   return (
     <div style={{height: "100vh", display: "flex", flex: 1, flexDirection: "column"}}>
@@ -28,7 +27,7 @@ const SidePane: React.FC<IProps> = ({incidentsData}) => {
     <Header.Content>Incidents</Header.Content>
   </Header>
       <ItemGroup divided >
-        {incidents.map(incident => (
+        {incidentsData.map(incident => (
           <IncidentCard incident={incident} />
         ))}
       </ItemGroup>

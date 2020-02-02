@@ -3,7 +3,7 @@ import { Item, Label } from "semantic-ui-react";
 import IInterface from "../interfaces/IIncident";
 
 interface IProps {
-  incident: IInterface;
+  incident: any;
 }
 
 const IncidentCard: React.FC<IProps> = ({ incident }) => {
@@ -12,13 +12,13 @@ const IncidentCard: React.FC<IProps> = ({ incident }) => {
       <Item.Image src="/assets/placeholder.png" />
 
       <Item.Content>
-        <Item.Header as="a">{incident.title}</Item.Header>
+        <Item.Header as="a">{incident.narrative}</Item.Header>
         <Item.Meta>
           <span>{incident.address}</span>
         </Item.Meta>
-        <Item.Description>{incident.description}</Item.Description>
+        { incident.description && <Item.Description>{incident.description}</Item.Description>}
         <Item.Extra>
-          <Label icon="calendar alternate">{incident.timeAndDate}</Label>
+          <Label icon="calendar alternate">{incident.offense_date}</Label>
         </Item.Extra>
       </Item.Content>
     </Item>
