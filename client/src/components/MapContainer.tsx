@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Icon } from 'semantic-ui-react';
-import MarkerContainer from './MarkerContainer';
-import MapMarker from './MapMarker';
 
 const AnyReactComponent = ({ text }: any) => <div>{text}</div>;
 
@@ -14,6 +12,20 @@ const MapContainer = (props: any) => {
   const [center, setCenter] = useState({ lat: props.coords.latitude, lng: props.coords.longitude });
   const [zoom, setZoom] = useState(14);
 
+  const selectColor = (id: String) => {
+    return props.selected == id ? 'yellow' : 'black' 
+  }
+  const Markers = props.markers.map((values: { latitude: any; longitude: any; id: any; }) => (
+    <Icon
+            key={values.id}
+            lat={values.latitude}
+            lng={values.longitude}
+            name='exclamation triangle'
+            color={selectColor(values.id)}
+            size='big'
+        />
+  ));
+
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
@@ -21,16 +33,8 @@ const MapContainer = (props: any) => {
         defaultCenter={center}
         defaultZoom={zoom}
       >
-        {/* {MarkerContainer()} */}
-        {/* <MarkerContainer /> */}
-        {/* <Icon
-          lat={29.6481044}
-          lng={-82.34400542}
-          text="My Marker"
-          name='exclamation circle'
-          size='big'
-          
-        /> */}
+        {Markers}
+
       </GoogleMapReact>
     </div>
   );
