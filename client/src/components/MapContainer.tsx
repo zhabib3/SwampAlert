@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import GoogleMapReact from 'google-map-react';
-import { Icon, Button } from 'semantic-ui-react';
+import { Icon, Button, Menu } from 'semantic-ui-react';
 
 const AnyReactComponent = ({ text }: any) => <div>{text}</div>;
 
@@ -13,15 +13,16 @@ const MapContainer = (props: any) => {
     return props.selected == id ? 'yellow' : 'black'
   }
   const Markers = props.markers.map((values: { latitude: any; longitude: any; id: any; }) => (
-    <Button icon
+    <Button inverted circular icon
+      styles={{ color: 'black'}}
       value={values.id}
       key={values.id}
       lat={values.latitude}
       lng={values.longitude}
       onClick={props.handleOnClickMarker}
-      >
+    >
       <Icon
-        name='exclamation triangle'
+        name='exclamation circle'
         color={selectColor(values.id)}
         size='big'
       />
