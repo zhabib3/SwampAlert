@@ -28,12 +28,12 @@ const App: React.FC = () => {
   }
 
   const handleIncidentRequests = async () => {
-    // await fetch(SERVER_URL)
-    //   .then(response => response.json())
-    //   .then(data => {console.log(data); setIncidents(data)});
-    await fetch(GET_CROWD_URL)
+    await fetch(SERVER_URL)
       .then(response => response.json())
-      .then(data => { console.log(data); setIncidents(data) });
+      .then(data => {console.log(data); setIncidents(data)});
+    // await fetch(GET_CROWD_URL)
+    //   .then(response => response.json())
+    //   .then(data => { console.log(data); setIncidents(data) });
   }
   useEffect(() => {
     // fetch(SERVER_URL)
