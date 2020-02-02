@@ -1,6 +1,6 @@
 import React, { useState, SyntheticEvent } from "react";
 import {
-  Item,
+  Image,
   ItemGroup,
   Label,
   Container,
@@ -58,10 +58,11 @@ const SidePane: React.FC<IProps> = ({
           margin: 0,
           backgroundColor: ""
         }}
+        textAlign="center"
       >
         <Header textAlign="center" style={{ marginTop: 20, marginBottom: 5, flex: 1 }} as="h2">
-          <Icon name="exclamation triangle" color="green" />
-          <Header.Content>SwampAware</Header.Content>
+          <Image src="./assets/alarm.png" />
+          <Header.Content>Swamp Alert</Header.Content>
         </Header>
 
         {renderSelectedIncident()}

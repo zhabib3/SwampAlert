@@ -71,7 +71,7 @@ const App: React.FC = () => {
         columns={2}
         style={{ minHeight: "100vh", backgroundColor: "#fff" }}
       >
-        <GridColumn style={{ padding: 0 }} width={4}>
+        <GridColumn style={{ padding: 0 }} width={5}>
           {incidents.length > 1 ? (
             <SidePane
               updateIncidents={updateIncidents}
@@ -84,7 +84,7 @@ const App: React.FC = () => {
           )}
         </GridColumn>
 
-        <GridColumn style={{ padding: 0 }} width={12}>
+        <GridColumn style={{ padding: 0 }} width={11}>
           {incidents.length > 1 ? (
             <MapWrapper
               handleOnClickMarker={handleOnClickMarker}
