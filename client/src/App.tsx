@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment, SyntheticEvent } from "react";
-import { Grid, GridColumn, Button, ButtonProps } from "semantic-ui-react";
+import { Grid, GridColumn, Button, ButtonProps, ItemProps } from "semantic-ui-react";
 import InputForm from "./components/InputForm"
 import "./App.css";
 import SidePane from "./components/SidePane";
@@ -95,6 +95,11 @@ const App: React.FC = () => {
   const handleOnClickMarker = (event: SyntheticEvent, data: ButtonProps) => {
     setSelectedIncident(data.value);
   }
+
+  const handleIncidentSelect = (event: SyntheticEvent, data: ButtonProps) => {
+    setSelectedIncident(data.value);
+  }
+
   useEffect(() => {
     fetch(SERVER_URL)
       .then(response => response.json())
@@ -105,7 +110,7 @@ const App: React.FC = () => {
     <div>
       <Grid centered columns={2} style={{minHeight: "100vh", backgroundColor: "#fff"}}>
         <GridColumn style={{padding: 0}} width={4}>
-          <SidePane incidentsData={incidents} selectedIncident={selectedIncident}/>
+          <SidePane incidentsData={incidents} selectedIncident={selectedIncident} handleIncidentSelect={handleIncidentSelect}/>
         </GridColumn>
 
         <GridColumn style={{padding: 0}} width={12}>

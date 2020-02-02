@@ -1,23 +1,32 @@
-import React from "react";
-import { Item, Label } from "semantic-ui-react";
+import React, { SyntheticEvent } from "react";
+import { Item, Label, Button, Menu } from "semantic-ui-react";
 
 interface IProps {
   incident: any;
+  handleIncidentSelect: (event: SyntheticEvent, data: object) => void;
 }
 
-const IncidentCard: React.FC<IProps> = ({ incident }) => {
+const IncidentCard: React.FC<IProps> = ({ incident, handleIncidentSelect }) => {
   return (
     <Item>
       <Item.Image src="/assets/placeholder.png" />
 
       <Item.Content>
-        <Item.Header as="a">{incident.narrative}</Item.Header>
+        <Menu.Item 
+          name={incident.narrative}
+          value={incident.id}
+          style={{
+            fontSize: 18,
+            fontWeight: "bold"
+          }}
+          onClick={handleIncidentSelect}
+        />
         <Item.Meta>
           <span>{incident.address}</span>
         </Item.Meta>
         { incident.description && <Item.Description>{incident.description}</Item.Description>}
         <Item.Extra>
-          <Label icon="calendar alternate">{incident.offense_date}</Label>
+          <Label icon="calendar">{incident.offense_date}</Label>
         </Item.Extra>
       </Item.Content>
     </Item>

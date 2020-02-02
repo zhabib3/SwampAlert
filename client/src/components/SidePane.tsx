@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, SyntheticEvent } from "react";
 import {
   Item,
   ItemGroup,
@@ -8,7 +8,8 @@ import {
   Icon,
   Segment,
   Header,
-  Card
+  Card,
+  Menu
 } from "semantic-ui-react";
 import IIncident from "../interfaces/IIncident";
 import IncidentCard from "./IncidentCard";
@@ -17,21 +18,26 @@ import InputForm from "./InputForm";
 interface IProps {
   incidentsData: any[];
   selectedIncident: String;
+  handleIncidentSelect: (event: SyntheticEvent, data: object) => void;
 }
 
-interface IProps {
-  incidentsData: any[];
-  selectedIncident: String;
-}
+// const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
 
-const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
+//   const renderSelectedIncident = () => {
+//     const data =
+//       incidentsData.filter(incident => incident.id === selectedIncident)[0] ||
+//       incidentsData[3];
+//     return <IncidentCard incident={data} />;
+//   };
+
+const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident, handleIncidentSelect }) => {
 
   const renderSelectedIncident = () => {
-    const data =
-      incidentsData.filter(incident => incident.id === selectedIncident)[0] ||
-      incidentsData[3];
-    return <IncidentCard incident={data} />;
-  };
+    const data = incidentsData.filter(incident => incident.id === selectedIncident)[0] || incidentsData[3];
+    return (
+      <IncidentCard incident={data} handleIncidentSelect={handleIncidentSelect} />
+    );
+  }
 
   return (
     <div
@@ -61,7 +67,7 @@ const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
           {renderSelectedIncident()}
 
           {incidentsData.map(incident => (
-            <IncidentCard incident={incident} />
+            <IncidentCard incident={incident} handleIncidentSelect={handleIncidentSelect} />
           ))}
         </ItemGroup>
       </Container>
@@ -75,5 +81,6 @@ const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
     </div>
   );
 };
+
 
 export default SidePane;
