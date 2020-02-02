@@ -9,7 +9,7 @@ interface IProps {
 const IncidentCard: React.FC<IProps> = ({ incident, handleIncidentSelect }) => {
   return (
     <Item>
-      <Item.Image src="/assets/placeholder.png" />
+      <Item.Image size="tiny" src="/assets/placeholder.png" />
 
       <Item.Content>
         <Menu.Item 

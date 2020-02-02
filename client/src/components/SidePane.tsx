@@ -14,6 +14,7 @@ import {
 import IIncident from "../interfaces/IIncident";
 import IncidentCard from "./IncidentCard";
 import InputForm from "./InputForm";
+import FocusedIncident from "./FocusedIncident";
 
 interface IProps {
   incidentsData: any[];
@@ -21,23 +22,22 @@ interface IProps {
   handleIncidentSelect: (event: SyntheticEvent, data: object) => void;
 }
 
-// const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
-
-//   const renderSelectedIncident = () => {
-//     const data =
-//       incidentsData.filter(incident => incident.id === selectedIncident)[0] ||
-//       incidentsData[3];
-//     return <IncidentCard incident={data} />;
-//   };
-
-const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident, handleIncidentSelect }) => {
-
+const SidePane: React.FC<IProps> = ({
+  incidentsData,
+  selectedIncident,
+  handleIncidentSelect
+}) => {
   const renderSelectedIncident = () => {
-    const data = incidentsData.filter(incident => incident.id === selectedIncident)[0] || incidentsData[3];
+    const data =
+      incidentsData.filter(incident => incident.id === selectedIncident)[0] ||
+      incidentsData[3];
     return (
-      <IncidentCard incident={data} handleIncidentSelect={handleIncidentSelect} />
+      <FocusedIncident
+        incident={data}
+        handleIncidentSelect={handleIncidentSelect}
+      />
     );
-  }
+  };
 
   return (
     <div
@@ -50,24 +50,39 @@ const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident, handleInc
     >
       <Container
         style={{
-          paddingTop: 20,
+          flex: 1,
+          paddingTop: 5,
           paddingLeft: 20,
           paddingRight: 20,
           margin: 0,
-          flex: 10,
-          overflowY: "scroll"
+          backgroundColor: ""
         }}
       >
-        <Header style={{ margin: 20 }} as="h2">
+        <Header style={{ marginTop: 20, marginBottom: 5, flex: 1 }} as="h2">
           <Icon name="exclamation triangle" />
           <Header.Content>Incidents</Header.Content>
         </Header>
 
-        <ItemGroup divided>
-          {renderSelectedIncident()}
+        {renderSelectedIncident()}
+      </Container>
 
+      <Container
+        style={{
+          paddingTop: 5,
+          paddingLeft: 20,
+          paddingRight: 20,
+          margin: 0,
+          flex: 10,
+          overflowY: "scroll",
+          backgroundColor: "#faf9f8"
+        }}
+      >
+        <ItemGroup divided>
           {incidentsData.map(incident => (
-            <IncidentCard incident={incident} handleIncidentSelect={handleIncidentSelect} />
+            <IncidentCard
+              incident={incident}
+              handleIncidentSelect={handleIncidentSelect}
+            />
           ))}
         </ItemGroup>
       </Container>
@@ -81,6 +96,5 @@ const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident, handleInc
     </div>
   );
 };
-
 
 export default SidePane;
