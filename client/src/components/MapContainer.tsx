@@ -6,9 +6,6 @@ import { Icon, Button } from 'semantic-ui-react';
 const AnyReactComponent = ({ text }: any) => <div>{text}</div>;
 
 const MapContainer = (props: any) => {
-
-
-  console.log(props.coords);
   const [center, setCenter] = useState({ lat: props.coords.latitude, lng: props.coords.longitude });
   const [zoom, setZoom] = useState(14);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, SyntheticEvent } from "react";
 import {
   Item,
   ItemGroup,
@@ -17,16 +17,17 @@ import InputForm from "./InputForm";
 interface IProps {
   incidentsData: IIncident[];
   selectedIncident: String;
+  handleIncidentSelect: (event: SyntheticEvent, data: object) => void;
 }
 
-const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
+const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident, handleIncidentSelect }) => {
   const [incidents, setIncidents] = useState<IIncident[]>(incidentsData);
   const currentIncident : IIncident = incidentsData[0];
 
   const renderSelectedIncident = () => {
     const data = incidents.filter(incident => incident.id === selectedIncident)[0] || incidentsData[3];
     return (
-      <IncidentCard incident={data} />
+      <IncidentCard incident={data} handleIncidentSelect={handleIncidentSelect} />
     );
   }
 
@@ -42,7 +43,7 @@ const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
           {renderSelectedIncident()}
 
           {incidents.map(incident => (
-            <IncidentCard incident={incident} />
+            <IncidentCard incident={incident} handleIncidentSelect={handleIncidentSelect} />
           ))}
         </ItemGroup>
       </Container>

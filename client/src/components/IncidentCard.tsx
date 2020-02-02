@@ -1,18 +1,19 @@
-import React from "react";
-import { Item, Label } from "semantic-ui-react";
+import React, { SyntheticEvent } from "react";
+import { Item, Label, Button } from "semantic-ui-react";
 import IInterface from "../interfaces/IIncident";
 
 interface IProps {
   incident: IInterface;
+  handleIncidentSelect: (event: SyntheticEvent, data: object) => void;
 }
 
-const IncidentCard: React.FC<IProps> = ({ incident }) => {
+const IncidentCard: React.FC<IProps> = ({ incident, handleIncidentSelect }) => {
   return (
     <Item>
       <Item.Image src="/assets/placeholder.png" />
 
       <Item.Content>
-        <Item.Header as="a">{incident.title}</Item.Header>
+        <Button value={incident.id} onClick={handleIncidentSelect} as="a">{incident.title}</Button>
         <Item.Meta>
           <span>{incident.address}</span>
         </Item.Meta>
