@@ -7,81 +7,8 @@ import MapWrapper from './components/MapWrapper';
 import IIncident from "./interfaces/IIncident";
 
 const SERVER_URL = "http://localhost:5000/incident/";
+const GET_CROWD_URL = 'http://localhost:5000/incident/getcrowd';
 
-// const DUMMY_DATA: IIncident[] = [
-//   {
-//     id: "210018190",
-//     title: "Battery (simple)",
-//     timeAndDate: "10/31/2019 11:00:00 PM",
-//     address: "4000 BLK NW 13TH ST",
-//     longitude: "-82.339085",
-//     latitude: "29.689335"
-//   },
-//   {
-//     id: "210018795",
-//     title: "Theft Petit",
-//     timeAndDate: "10/30/2019 13:00:00 PM",
-//     address: "4000 BLK NW 13TH ST",
-//     longitude: "-82.330011",
-//     latitude: "27.687035"
-//   },
-//   {
-//     id: "210018896",
-//     title: "Battery (simple)",
-//     timeAndDate: "10/31/2019 08:00:00 AM",
-//     address: "3000 BLK NW 13TH ST",
-//     longitude: "-82.337371",
-//     latitude: "29.650838"
-//   },
-//   {
-//     id: "210018197",
-//     title: "Drug Violation",
-//     timeAndDate: "10/31/2019 08:00:00 AM",
-//     address: "4000 BLK NW 13TH ST",
-//     longitude: "-82.341254",
-//     latitude: "29.651962"
-//   },
-//   {
-//     id: "210018192",
-//     title: "Drug Violation",
-//     timeAndDate: "10/31/2019 08:00:00 AM",
-//     address: "4000 BLK NW 13TH ST",
-//     longitude: "-82.449085",
-//     latitude: "29.689335"
-//   },
-//   {
-//     id: "210018193",
-//     title: "Drug Violation",
-//     timeAndDate: "10/31/2019 08:00:00 AM",
-//     address: "4000 BLK NW 13TH ST",
-//     longitude: "-82.344730",
-//     latitude: "29.651020"
-//   },
-//   {
-//     id: "210018194",
-//     title: "Drug Violation",
-//     timeAndDate: "10/31/2019 08:00:00 AM",
-//     address: "4000 BLK NW 13TH ST",
-//     longitude: "-82.449085",
-//     latitude: "29.689335"
-//   },
-//   {
-//     id: "210018195",
-//     title: "Drug Violation",
-//     timeAndDate: "10/31/2019 08:00:00 AM",
-//     address: "4000 BLK NW 13TH ST",
-//     longitude: "-82.348313",
-//     latitude: "29.650321"
-//   },
-//   {
-//     id: "210018196",
-//     title: "Drug Violation",
-//     timeAndDate: "10/31/2019 08:00:00 AM",
-//     address: "4000 BLK NW 13TH ST",
-//     longitude: "-82.343496",
-//     latitude: "29.648587"
-//   }
-// ];
 const App: React.FC = () => {
   const [incidents, setIncidents] = useState<any[]>([{
     id: '',
@@ -100,21 +27,30 @@ const App: React.FC = () => {
     setSelectedIncident(data.value);
   }
 
-  useEffect(() => {
-    fetch(SERVER_URL)
+  const handleIncidentRequests = async () => {
+    // await fetch(SERVER_URL)
+    //   .then(response => response.json())
+    //   .then(data => {console.log(data); setIncidents(data)});
+    await fetch(GET_CROWD_URL)
       .then(response => response.json())
-      .then(data => setIncidents(data));
+      .then(data => { console.log(data); setIncidents(data) });
+  }
+  useEffect(() => {
+    // fetch(SERVER_URL)
+    //   .then(response => response.json())
+    //   .then(data => setIncidents(data))
+    handleIncidentRequests();
   }, []);
 
   return (
     <div>
-      <Grid centered columns={2} style={{minHeight: "100vh", backgroundColor: "#fff"}}>
-        <GridColumn style={{padding: 0}} width={4}>
-          <SidePane incidentsData={incidents} selectedIncident={selectedIncident} handleIncidentSelect={handleIncidentSelect}/>
+      <Grid centered columns={2} style={{ minHeight: "100vh", backgroundColor: "#fff" }}>
+        <GridColumn style={{ padding: 0 }} width={4}>
+          {incidents[1] && <SidePane incidentsData={incidents} selectedIncident={selectedIncident} handleIncidentSelect={handleIncidentSelect} />}
         </GridColumn>
 
-        <GridColumn style={{padding: 0}} width={12}>
-        <MapWrapper handleOnClickMarker={handleOnClickMarker} markerData={incidents} selected={selectedIncident}></MapWrapper>
+        <GridColumn style={{ padding: 0 }} width={12}>
+  {incidents[1] && <MapWrapper handleOnClickMarker={handleOnClickMarker} markerData={incidents} selected={selectedIncident}></MapWrapper> }
         </GridColumn>
       </Grid>
     </div>
@@ -123,7 +59,7 @@ const App: React.FC = () => {
     // </Fragment>
   );
 
-  
+
 };
 
 export default App;
