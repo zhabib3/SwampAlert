@@ -25,11 +25,10 @@ interface IProps {
 }
 
 const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
-  const [incidents, setIncidents] = useState<IIncident[]>(incidentsData);
 
   const renderSelectedIncident = () => {
     const data =
-      incidents.filter(incident => incident.id === selectedIncident)[0] ||
+      incidentsData.filter(incident => incident.id === selectedIncident)[0] ||
       incidentsData[3];
     return <IncidentCard incident={data} />;
   };
@@ -57,20 +56,11 @@ const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
           <Icon name="exclamation triangle" />
           <Header.Content>Incidents</Header.Content>
         </Header>
-        <ItemGroup divided>
-          {incidentsData.map(incident => (
-            <IncidentCard incident={incident} />
-          ))}
-        </ItemGroup>
-        <Header style={{ margin: 20 }} as="h2">
-          <Icon name="exclamation triangle" />
-          <Header.Content>Incidents</Header.Content>
-        </Header>
 
         <ItemGroup divided>
           {renderSelectedIncident()}
 
-          {incidents.map(incident => (
+          {incidentsData.map(incident => (
             <IncidentCard incident={incident} />
           ))}
         </ItemGroup>
