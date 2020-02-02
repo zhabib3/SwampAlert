@@ -27,14 +27,35 @@ exports.create = (req, res) => {
   let docRef = db.collection('incidents').doc();
   let data = req.body;
   data.id = docRef.id;
+  data.isCrowdData = true;
 
   docRef.set(data).then((result, err) => {
-    if (err) { 
-      console.log(err); 
+    if (err) {
+      console.log(err);
       res.error("Incident creation failed." + err);
     }
     console.log(result);
   });
 
   res.json(data)
+}
+
+exports.getCrowdData = (req, res) => {
+  const db = new Firestore({
+    projectId: 'zeecareful',
+    keyFilename: './ZeeCareful-60278c80d2bf.json',
+  });
+  let ret = [];
+  let docRef = db.collection('incidents');
+  docRef.get()
+  .then(data => {
+    data.forEach(incident => {
+      ret.push(incident.data());
+    })
+    res.send(ret);
+  })
+  .catch(err => {
+    res.status(500).send("Error retrieving Crowd Data.\n" + err);
+  })
+
 }
