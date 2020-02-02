@@ -20,12 +20,14 @@ interface IProps {
   incidentsData: any[];
   selectedIncident: String;
   handleIncidentSelect: (event: SyntheticEvent, data: object) => void;
+  updateIncidents: (data: any) => void;
 }
 
 const SidePane: React.FC<IProps> = ({
   incidentsData,
   selectedIncident,
-  handleIncidentSelect
+  handleIncidentSelect,
+  updateIncidents
 }) => {
   const renderSelectedIncident = () => {
     const data =
@@ -57,9 +59,9 @@ const SidePane: React.FC<IProps> = ({
           backgroundColor: ""
         }}
       >
-        <Header style={{ marginTop: 20, marginBottom: 5, flex: 1 }} as="h2">
-          <Icon name="exclamation triangle" />
-          <Header.Content>Incidents</Header.Content>
+        <Header textAlign="center" style={{ marginTop: 20, marginBottom: 5, flex: 1 }} as="h2">
+          <Icon name="exclamation triangle" color="green" />
+          <Header.Content>SwampAware</Header.Content>
         </Header>
 
         {renderSelectedIncident()}
@@ -90,7 +92,7 @@ const SidePane: React.FC<IProps> = ({
         inverted
         textAlign="center"
       >
-        <InputForm />
+        <InputForm updateIncidents={updateIncidents} />
       </Segment>
     </div>
   );

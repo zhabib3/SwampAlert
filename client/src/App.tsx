@@ -15,7 +15,7 @@ import IIncident from "./interfaces/IIncident";
 
 const SERVER_URL = "http://localhost:5000/incident/";
 const GET_CROWD_URL = "http://localhost:5000/incident/getcrowd";
-const CROWD_DATA = require('./crowdData.json');
+const CROWD_DATA = require("./components/crowdData.json");
 
 const App: React.FC = () => {
   const [incidents, setIncidents] = useState<any[]>(
@@ -39,6 +39,10 @@ const App: React.FC = () => {
 
   const handleIncidentSelect = (event: SyntheticEvent, data: ButtonProps) => {
     setSelectedIncident(data.value);
+  };
+
+  const updateIncidents = (data) => {
+    setIncidents([...incidents, data]);
   };
 
   const handleIncidentRequests = async () => {
@@ -70,6 +74,7 @@ const App: React.FC = () => {
         <GridColumn style={{ padding: 0 }} width={4}>
           {incidents.length > 1 ? (
             <SidePane
+              updateIncidents={updateIncidents}
               incidentsData={incidents}
               selectedIncident={selectedIncident}
               handleIncidentSelect={handleIncidentSelect}

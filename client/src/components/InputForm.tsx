@@ -10,7 +10,8 @@ import {
 } from "semantic-ui-react";
 
 import ImageUploader from "react-images-upload";
-
+// const fs = require("fs");
+import fs from 'fs';
 interface IForm {
   narrative: String;
   description: String;
@@ -21,7 +22,11 @@ interface IForm {
   image?: any;
 }
 
-const InputForm: React.FC = () => {
+interface IProps {
+  updateIncidents: (data: any) => void;
+}
+
+const InputForm: React.FC<IProps> = ({updateIncidents}) => {
   const [form, setForm] = useState<IForm>({
     narrative: "",
     description: "",
@@ -51,8 +56,9 @@ const InputForm: React.FC = () => {
   };
 
   const handleSubmit = async () => {
+    
     const url = "http://localhost:5000/incident/";
-
+    updateIncidents(form)
     const response = await fetch(url, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -145,3 +151,11 @@ const InputForm: React.FC = () => {
   );
 };
 export default InputForm;
+
+const preprocess = (data) => {
+  let crowdData = require('./crowdData.json');
+  crowdData.push(data);
+  let json = JSON.stringify(crowdData);
+  fs.writeFile('./crowdData.json', json,
+    "utf8", err => {console.log(err)});
+}
