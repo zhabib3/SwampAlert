@@ -1,0 +1,70 @@
+[
+  {
+      "latitude": "29.6129192",
+      "offense_date": "2020022",
+      "severity": "Alert",
+      "isCrowdData": true,
+      "longitude": "-82.3345219219",
+      "id": "PaGSbqhjwtgIu2PyggoT",
+      "narrative": "Dennis harrased me",
+      "description": "Dennis was being weird at Chick Fil a by University Ave"
+  },
+  {
+      "id": "PaGSLqhjwtgnu2PyggoT",
+      "narrative": "Someone is throwing trash",
+      "description": "There's a guy in my apartment at 2nd floor, throws trash every morning from the window",
+      "latitude": "29.608319",
+      "offense_date": "2020022",
+      "severity": "Suspicious",
+      "isCrowdData": true,
+      "longitude": "-82.522301"
+  },
+  {
+      "offense_date": "2020-01-05 12:50 pm",
+      "severity": "Alert",
+      "isCrowdData": true,
+      "longitude": "-82.31230",
+      "id": "PafSLqwzjwtgIu2PyggiT",
+      "narrative": "Bag Thief",
+      "description": "My grey Google tote bag got stolen at Marston today",
+      "latitude": "29.617319"
+  },
+  {
+      "latitude": "29.689335",
+      "severity": "Suspicious",
+      "offense_date": "",
+      "longitude": "-82.339085",
+      "narrative": "Bribery",
+      "description": "Bob"
+  },
+  {
+      "narrative": "Dennis harrased me",
+      "description": "Dennis was being weird at Chick Fil a by University Ave",
+      "latitude": "29.635619",
+      "offense_date": "2020022",
+      "severity": "Alert",
+      "isCrowdData": true,
+      "longitude": "-82.542001",
+      "id": "PaGSLqhjwtgIu2PyggoT"
+  },
+  {
+      "narrative": "Dennis harrased me",
+      "description": "Swamp Hacks Thief",
+      "latitude": "29.6424192",
+      "offense_date": "2020022",
+      "severity": "Alert",
+      "isCrowdData": true,
+      "longitude": "-82.341319219",
+      "id": "PaGSLQhjwtgIu2Py9coT"
+  },
+  {
+      "latitude": "29.718319",
+      "offense_date": "2020022",
+      "severity": "Alert",
+      "isCrowdData": true,
+      "longitude": "-82.402301",
+      "id": "PaGSLfrhjwtgIu2PyggoT",
+      "narrative": "Dennis harrased me",
+      "description": "Dennis was being weird at Chick Fil a by University Ave"
+  }
+]

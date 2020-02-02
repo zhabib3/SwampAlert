@@ -29,8 +29,7 @@ const SidePane: React.FC<IProps> = ({
 }) => {
   const renderSelectedIncident = () => {
     const data =
-      incidentsData.filter(incident => incident.id === selectedIncident)[0] ||
-      incidentsData[3];
+      incidentsData.filter(incident => incident.id === selectedIncident)[0]
     return (
       <FocusedIncident
         incident={data}

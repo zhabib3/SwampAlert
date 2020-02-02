@@ -1,6 +1,7 @@
 /**
  * TODO(developer): Uncomment the following lines before running the sample.
  */
+
 const bucketName = 'zeecareful.appspot.com';
 const filename = './server.js';
 

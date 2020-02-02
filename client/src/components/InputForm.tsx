@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import {
   Button,
   Modal,
@@ -10,7 +10,6 @@ import {
 } from "semantic-ui-react";
 
 import ImageUploader from "react-images-upload";
-import * as Storage from "@google-cloud/storage";
 
 interface IForm {
   narrative: String;
@@ -37,8 +36,34 @@ const InputForm: React.FC = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = () => {
-    
+  useEffect(() => {
+    setForm({
+      ...form,
+      longitude: "-82.344519219",
+      latitude: "29.6479192",
+      offense_date: getCurTimeAndDate()
+    });
+  }, [])
+
+  const getCurTimeAndDate = () => {
+    let newDate = new Date();
+    return newDate.toDateString();
+  };
+
+  const handleSubmit = async () => {
+    const url = "http://localhost:5000/incident/";
+
+    const response = await fetch(url, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json"
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *client
+      body: JSON.stringify(form) // body data type must match "Content-Type" header
+    });
+
+    console.log(response.json());
   };
 
   const handleImageUpload = (images: any) => {

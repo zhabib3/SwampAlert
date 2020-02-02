@@ -19,6 +19,9 @@ const FocusedIncident: React.FC<IProps> = ({
   incident,
   handleIncidentSelect
 }) => {
+  if (incident == undefined) {
+    return <p>Loading</p>
+  }
   return (
     <ItemGroup>
       <Item fluid style={{
