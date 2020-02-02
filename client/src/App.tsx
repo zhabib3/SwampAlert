@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { Grid, GridColumn } from "semantic-ui-react";
+import React, { useState, useEffect, Fragment, SyntheticEvent } from "react";
+import { Grid, GridColumn, Button, ButtonProps } from "semantic-ui-react";
 import InputForm from "./components/InputForm"
 import "./App.css";
 import SidePane from "./components/SidePane";
@@ -87,6 +87,9 @@ const App: React.FC = () => {
   const [serverMsg, setServerMsg] = useState("Loading...");
   const [selectedIncident, setSelectedIncident] = useState(DUMMY_DATA[0].id);
 
+  const handleOnClickMarker = (event: SyntheticEvent, data: ButtonProps) => {
+    setSelectedIncident(data.value);
+  }
   useEffect(() => {
     fetch(SERVER_URL)
       .then(response => response.text())
@@ -97,11 +100,11 @@ const App: React.FC = () => {
     <div>
       <Grid centered columns={2} style={{minHeight: "100vh", backgroundColor: "#fff"}}>
         <GridColumn style={{padding: 0}} width={4}>
-          <SidePane incidentsData={DUMMY_DATA} />
+          <SidePane incidentsData={DUMMY_DATA} selectedIncident={selectedIncident}/>
         </GridColumn>
 
         <GridColumn style={{padding: 0}} width={12}>
-        <MapWrapper markerData={DUMMY_DATA} selected={selectedIncident}></MapWrapper>
+        <MapWrapper handleOnClickMarker={handleOnClickMarker} markerData={DUMMY_DATA} selected={selectedIncident}></MapWrapper>
         </GridColumn>
       </Grid>
     </div>
