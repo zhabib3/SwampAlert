@@ -1,6 +1,5 @@
 import React from "react";
 import { Item, Label } from "semantic-ui-react";
-import IInterface from "../interfaces/IIncident";
 
 interface IProps {
   incident: any;

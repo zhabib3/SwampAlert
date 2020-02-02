@@ -7,33 +7,79 @@ import {
   Button,
   Icon,
   Segment,
-  Header
+  Header,
+  Card
 } from "semantic-ui-react";
 import IIncident from "../interfaces/IIncident";
 import IncidentCard from "./IncidentCard";
 import InputForm from "./InputForm";
 
-interface IProps{
+interface IProps {
   incidentsData: any[];
+  selectedIncident: String;
 }
 
-const SidePane: React.FC<IProps> = ({incidentsData}) => {
+interface IProps {
+  incidentsData: any[];
+  selectedIncident: String;
+}
+
+const SidePane: React.FC<IProps> = ({ incidentsData, selectedIncident }) => {
+  const [incidents, setIncidents] = useState<IIncident[]>(incidentsData);
+
+  const renderSelectedIncident = () => {
+    const data =
+      incidents.filter(incident => incident.id === selectedIncident)[0] ||
+      incidentsData[3];
+    return <IncidentCard incident={data} />;
+  };
 
   return (
-    <div style={{height: "100vh", display: "flex", flex: 1, flexDirection: "column"}}>
-      <Container style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 20, margin: 0, flex: 10, overflowY: "scroll" }}>
-      <Header style={{margin: 20}} as='h2'>
-    <Icon name='exclamation triangle' />
-    <Header.Content>Incidents</Header.Content>
-  </Header>
-      <ItemGroup divided >
-        {incidentsData.map(incident => (
-          <IncidentCard incident={incident} />
-        ))}
-      </ItemGroup>
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flex: 1,
+        flexDirection: "column"
+      }}
+    >
+      <Container
+        style={{
+          paddingTop: 20,
+          paddingLeft: 20,
+          paddingRight: 20,
+          margin: 0,
+          flex: 10,
+          overflowY: "scroll"
+        }}
+      >
+        <Header style={{ margin: 20 }} as="h2">
+          <Icon name="exclamation triangle" />
+          <Header.Content>Incidents</Header.Content>
+        </Header>
+        <ItemGroup divided>
+          {incidentsData.map(incident => (
+            <IncidentCard incident={incident} />
+          ))}
+        </ItemGroup>
+        <Header style={{ margin: 20 }} as="h2">
+          <Icon name="exclamation triangle" />
+          <Header.Content>Incidents</Header.Content>
+        </Header>
+
+        <ItemGroup divided>
+          {renderSelectedIncident()}
+
+          {incidents.map(incident => (
+            <IncidentCard incident={incident} />
+          ))}
+        </ItemGroup>
       </Container>
-     
-      <Segment style={{flex: 1, margin: 0, borderRadius: 0}} inverted textAlign="center">
+      <Segment
+        style={{ flex: 1, margin: 0, borderRadius: 0 }}
+        inverted
+        textAlign="center"
+      >
         <InputForm />
       </Segment>
     </div>
