@@ -11,7 +11,7 @@ const SERVER_URL = "http://localhost:5000/";
 
 const DUMMY_DATA: IIncident[] = [
   {
-    id: "210018194",
+    id: "210018190",
     title: "Battery (simple)",
     timeAndDate: "10/31/2019 11:00:00 PM",
     address: "4000 BLK NW 13TH ST",
@@ -19,7 +19,7 @@ const DUMMY_DATA: IIncident[] = [
     latitude: "29.689335"
   },
   {
-    id: "210018195",
+    id: "210018795",
     title: "Theft Petit",
     timeAndDate: "10/30/2019 13:00:00 PM",
     address: "4000 BLK NW 13TH ST",
@@ -27,7 +27,7 @@ const DUMMY_DATA: IIncident[] = [
     latitude: "27.687035"
   },
   {
-    id: "210018196",
+    id: "210018896",
     title: "Battery (simple)",
     timeAndDate: "10/31/2019 08:00:00 AM",
     address: "3000 BLK NW 13TH ST",
@@ -43,7 +43,7 @@ const DUMMY_DATA: IIncident[] = [
     latitude: "29.651962"
   },
   {
-    id: "210018197",
+    id: "210018192",
     title: "Drug Violation",
     timeAndDate: "10/31/2019 08:00:00 AM",
     address: "4000 BLK NW 13TH ST",
@@ -51,7 +51,7 @@ const DUMMY_DATA: IIncident[] = [
     latitude: "29.689335"
   },
   {
-    id: "210018197",
+    id: "210018193",
     title: "Drug Violation",
     timeAndDate: "10/31/2019 08:00:00 AM",
     address: "4000 BLK NW 13TH ST",
@@ -59,7 +59,7 @@ const DUMMY_DATA: IIncident[] = [
     latitude: "29.651020"
   },
   {
-    id: "210018197",
+    id: "210018194",
     title: "Drug Violation",
     timeAndDate: "10/31/2019 08:00:00 AM",
     address: "4000 BLK NW 13TH ST",
@@ -67,7 +67,7 @@ const DUMMY_DATA: IIncident[] = [
     latitude: "29.689335"
   },
   {
-    id: "210018197",
+    id: "210018195",
     title: "Drug Violation",
     timeAndDate: "10/31/2019 08:00:00 AM",
     address: "4000 BLK NW 13TH ST",
@@ -75,7 +75,7 @@ const DUMMY_DATA: IIncident[] = [
     latitude: "29.650321"
   },
   {
-    id: "210018197",
+    id: "210018196",
     title: "Drug Violation",
     timeAndDate: "10/31/2019 08:00:00 AM",
     address: "4000 BLK NW 13TH ST",
@@ -85,6 +85,7 @@ const DUMMY_DATA: IIncident[] = [
 ];
 const App: React.FC = () => {
   const [serverMsg, setServerMsg] = useState("Loading...");
+  const [selectedIncident, setSelectedIncident] = useState(DUMMY_DATA[0].id);
 
   useEffect(() => {
     fetch(SERVER_URL)
@@ -100,7 +101,7 @@ const App: React.FC = () => {
         </GridColumn>
 
         <GridColumn style={{padding: 0}} width={12}>
-        <MapWrapper markerData={DUMMY_DATA}></MapWrapper>
+        <MapWrapper markerData={DUMMY_DATA} selected={selectedIncident}></MapWrapper>
         </GridColumn>
       </Grid>
     </div>

@@ -11,13 +11,17 @@ const MapContainer = (props: any) => {
   console.log(props.coords);
   const [center, setCenter] = useState({ lat: props.coords.latitude, lng: props.coords.longitude });
   const [zoom, setZoom] = useState(14);
-  let key = 0;
-  const Markers = props.markers.map((values: { latitude: any; longitude: any; }) => (
+
+  const selectColor = (id: String) => {
+    return props.selected == id ? 'yellow' : 'black' 
+  }
+  const Markers = props.markers.map((values: { latitude: any; longitude: any; id: any; }) => (
     <Icon
-            key={key++}
+            key={values.id}
             lat={values.latitude}
             lng={values.longitude}
-            name='exclamation circle'
+            name='exclamation triangle'
+            color={selectColor(values.id)}
             size='big'
         />
   ));
